@@ -24,3 +24,5 @@ It is a static page (`index.html`) plus one serverless function (`api/summary.js
 The key stays on the server. The summary request sends only amounts, dates and bill categories, never names, phone numbers or customer IDs.
 
 All data in the prototype is sample data.
+
+Hosted on Vercel.
