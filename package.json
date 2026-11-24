@@ -1,0 +1,7 @@
+{
+  "name": "paytm-bills-hub",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Bills Hub: clickable prototype for the Paytm product case (Recharge engagement)",
+  "engines": { "node": ">=18" }
+}
