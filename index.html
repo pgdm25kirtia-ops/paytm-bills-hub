@@ -59,6 +59,8 @@ button.card{font:inherit;color:inherit;text-align:left;cursor:pointer;width:100%
 .lb:hover{background:#F8FAFC}
 .lst{overflow:hidden}
 .lst > *:last-child .lb, .lst > .lb:last-child{border-bottom:0}
+.fab{position:absolute;right:20px;bottom:16px;z-index:4;height:52px;padding:0 20px 0 16px;border:0;border-radius:26px;background:#002E6E;color:#fff;display:flex;align-items:center;gap:8px;font:700 15px/20px Inter,sans-serif;box-shadow:0 10px 24px rgba(0,46,110,.35);cursor:pointer;animation:pop .35s ease-out}
+.fab:hover{background:#00245A}
 .spin{width:18px;height:18px;border-radius:9px;border:2.5px solid #D5E9F5;border-top-color:#00BAF2;animation:sp .8s linear infinite;flex:0 0 18px}
 @keyframes sp{to{transform:rotate(360deg)}}
 @keyframes up{from{transform:translateY(24px);opacity:0}to{transform:none;opacity:1}}
@@ -300,9 +302,9 @@ body{background:#0B1B33;font-family:Inter,system-ui,sans-serif;overflow:hidden}
 <sc-if value="{{ s.hub }}" hint-placeholder-val="{{ false }}">
 <div class="screen">
   <div style="flex:0 0 auto;padding:20px 20px 12px;display:flex;align-items:flex-end;justify-content:space-between">
-  <div><div class="t13 muted" style="font-weight:500">Hi Kirti</div><h1 style="margin:2px 0 0;font-size:26px;line-height:32px;font-weight:700;letter-spacing:-0.02em">Bills Hub</h1></div><div class="row" style="gap:8px"><button class="ib" aria-label="Add a bill" onClick="{{ toAddBill }}" style="background:#fff;border:1px solid #E3E9F1"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></button><button class="ib" aria-label="Reminder settings" onClick="{{ bellTap }}" style="background:#fff;border:1px solid #E3E9F1"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/></svg></button></div>
+  <div><div class="t13 muted" style="font-weight:500">Hi Kirti</div><h1 style="margin:2px 0 0;font-size:26px;line-height:32px;font-weight:700;letter-spacing:-0.02em">Bills Hub</h1></div><div class="row" style="gap:8px"><button class="ib" aria-label="Add a bill" onClick="{{ openAddSheet }}" style="background:#fff;border:1px solid #E3E9F1"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></button><button class="ib" aria-label="Reminder settings" onClick="{{ bellTap }}" style="background:#fff;border:1px solid #E3E9F1"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/></svg></button></div>
 </div>
-  <div class="scroll" style="padding:4px 20px 24px;display:flex;flex-direction:column;gap:16px">
+  <div class="scroll" style="padding:4px 20px 88px;display:flex;flex-direction:column;gap:16px">
     <button class="card" onClick="{{ toInsights }}" style="padding:16px;display:flex;flex-direction:column;gap:8px;background:#F6F4FF;border-color:#E1DBFA">
       <div class="row" style="justify-content:space-between;width:100%"><div class="row" style="gap:8px;color:#5636C9"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.8 4.9L18.7 9.7l-4.9 1.8L12 16.4l-1.8-4.9L5.3 9.7l4.9-1.8z"/><path d="M18.5 15l.8 2.2 2.2.8-2.2.8-.8 2.2-.8-2.2-2.2-.8 2.2-.8z"/></svg><span style="font-size:13px;line-height:18px;font-weight:700;color:#432AA8">AI summary</span></div><span style="font-size:12px;line-height:16px;color:#5B6B82">by Gemini</span></div>
       <span style="font-size:14px;line-height:21px;color:#0B1B33">{{ aiShort }}</span>
@@ -368,9 +370,9 @@ body{background:#0B1B33;font-family:Inter,system-ui,sans-serif;overflow:hidden}
 </button></sc-for></div>
       </div>
     </sc-if>
-    <button class="card" onClick="{{ toAddBill }}" style="padding:16px;display:flex;gap:14px;align-items:center;border-style:dashed;border-color:#A9BBD0">
+    <button class="card" onClick="{{ openAddSheet }}" style="padding:16px;display:flex;gap:14px;align-items:center;border-style:dashed;border-color:#A9BBD0">
       <div class="tile" style="background:#FFF6D6;color:#845500"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2L3 14h9l-1 8 10-12h-9z"/></svg></div>
-      <div style="flex:1;display:flex;flex-direction:column;gap:2px"><span class="t15">Add a bill</span><span class="t13 muted">Mobile, DTH, LPG, electricity, water and more</span></div>
+      <div style="flex:1;display:flex;flex-direction:column;gap:2px"><span class="t15">Add a bill</span><span class="t13 muted">Scan a bill photo, or enter the details</span></div>
       <span class="muted"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></span>
     </button>
     <sc-if value="{{ noFamily }}" hint-placeholder-val="{{ false }}">
@@ -798,7 +800,71 @@ body{background:#0B1B33;font-family:Inter,system-ui,sans-serif;overflow:hidden}
   </div>
 </div>
 </sc-if>
+<sc-if value="{{ s.scanBill }}" hint-placeholder-val="{{ false }}">
+<div class="screen" style="background:#0B1B33">
+  <div class="bar" style="background:transparent;color:#fff"><button class="ib" aria-label="Back" onClick="{{ back }}" style="color:#fff"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg></button><h1 style="color:#fff">Scan a bill</h1></div>
+  <div style="flex:1 1 auto;min-height:0;display:flex;flex-direction:column;align-items:center;padding:4px 24px 0;gap:16px">
+    <span style="font-size:14px;line-height:20px;color:#B9C7DD;text-align:center">{{ scanHint }}</span>
+    <div style="position:relative;width:300px;height:440px;border-radius:20px;background:#1B2C46;display:flex;align-items:center;justify-content:center;overflow:hidden">
+      <div aria-label="Photo of a DHBVN electricity bill" role="img" style="width:248px;height:372px;background:#FBFAF5;border-radius:6px;transform:rotate(-2deg);box-shadow:0 12px 30px rgba(0,0,0,.35);padding:16px 16px;display:flex;flex-direction:column;gap:9px;font-family:Inter,sans-serif;color:#2A3442">
+        <div class="row" style="justify-content:space-between"><span style="font-size:12px;font-weight:800;color:#1F4E8C;letter-spacing:.02em">DHBVN</span><span style="font-size:9px;color:#6B7684">Electricity bill</span></div>
+        <span style="font-size:8px;line-height:11px;color:#6B7684">Dakshin Haryana Bijli Vitran Nigam · Gurugram</span>
+        <span style="height:1px;background:#D9D4C4"></span>
+        <div style="border-radius:5px;padding:5px 6px;box-shadow:inset 0 0 0 {{ scanBox }} #00BAF2;background:{{ scanBoxBg }}"><div style="font-size:8px;color:#6B7684">Account No.</div><div style="font-size:12px;font-weight:700;letter-spacing:.06em">7319 2046 58</div></div>
+        <div style="border-radius:5px;padding:5px 6px;box-shadow:inset 0 0 0 {{ scanBox }} #00BAF2;background:{{ scanBoxBg }}"><div style="font-size:8px;color:#6B7684">Name</div><div style="font-size:11px;font-weight:600">Kirti Agarwal</div></div>
+        <div style="font-size:8px;line-height:12px;color:#6B7684">Flat 402, Sector 46, Gurugram 122003</div>
+        <span style="height:1px;background:#D9D4C4"></span>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:4px;font-size:8px;color:#6B7684"><span>Bill month</span><span style="text-align:right;color:#2A3442;font-weight:600">Nov 2026</span><span>Units</span><span style="text-align:right;color:#2A3442;font-weight:600">268 kWh</span></div>
+        <div style="border-radius:5px;padding:5px 6px;box-shadow:inset 0 0 0 {{ scanBox }} #00BAF2;background:{{ scanBoxBg }}" class="row"><span style="font-size:9px;color:#6B7684;flex:1">Amount payable</span><span style="font-size:14px;font-weight:800">₹2,140</span></div>
+        <span style="width:80%;height:6px;border-radius:3px;background:#E6E1D2"></span>
+        <span style="width:60%;height:6px;border-radius:3px;background:#E6E1D2"></span>
+        <span style="width:70%;height:6px;border-radius:3px;background:#E6E1D2"></span>
+      </div>
+      <span aria-hidden="true" style="position:absolute;left:14px;top:14px;width:30px;height:30px;border-left:3px solid #fff;border-top:3px solid #fff;border-radius:8px 0 0 0"></span>
+      <span aria-hidden="true" style="position:absolute;right:14px;top:14px;width:30px;height:30px;border-right:3px solid #fff;border-top:3px solid #fff;border-radius:0 8px 0 0"></span>
+      <span aria-hidden="true" style="position:absolute;left:14px;bottom:14px;width:30px;height:30px;border-left:3px solid #fff;border-bottom:3px solid #fff;border-radius:0 0 0 8px"></span>
+      <span aria-hidden="true" style="position:absolute;right:14px;bottom:14px;width:30px;height:30px;border-right:3px solid #fff;border-bottom:3px solid #fff;border-radius:0 0 8px 0"></span>
+      <sc-if value="{{ scanReading }}" hint-placeholder-val="{{ false }}">
+        <div style="position:absolute;left:0;right:0;bottom:0;padding:14px;background:linear-gradient(transparent,rgba(11,27,51,.92));display:flex;align-items:center;justify-content:center;gap:10px;color:#fff">
+          <span class="spin" style="border-color:rgba(255,255,255,.3);border-top-color:#fff"></span><span style="font-size:14px;font-weight:600">Gemini is reading your bill</span>
+        </div>
+      </sc-if>
+    </div>
+  </div>
+  <div style="flex:0 0 auto;padding:16px 24px 28px;display:flex;align-items:center;justify-content:space-between">
+    <button class="ib" aria-label="Upload from gallery" onClick="{{ capture }}" style="width:48px;height:48px;background:rgba(255,255,255,.12);color:#fff;border-radius:14px"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3.5" width="18" height="17" rx="2.5"/><circle cx="9" cy="9" r="1.8"/><path d="M21 15.5l-5-5L6 20.5"/></svg></button>
+    <button aria-label="Take photo" onClick="{{ capture }}" disabled="{{ scanReading }}" style="width:72px;height:72px;border-radius:36px;border:4px solid #fff;background:#00BAF2;cursor:pointer;box-shadow:0 0 0 4px rgba(0,186,242,.25)"></button>
+    <button class="ib" aria-label="Enter details instead" onClick="{{ addManual }}" style="width:48px;height:48px;background:rgba(255,255,255,.12);color:#fff;border-radius:14px"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20h4L19 9l-4-4L4 16z"/><path d="M13.5 6.5l4 4"/></svg></button>
+  </div>
 </div>
+</sc-if>
+<sc-if value="{{ s.scanResult }}" hint-placeholder-val="{{ false }}">
+<div class="screen">
+  <div class="bar"><button class="ib" aria-label="Back" onClick="{{ back }}"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg></button><h1>Check the details</h1></div>
+  <div class="scroll" style="padding:8px 20px 24px;display:flex;flex-direction:column;gap:16px">
+    <div class="row" style="gap:10px;background:#F6F4FF;border:1px solid #E1DBFA;border-radius:14px;padding:12px 14px"><span style="color:#5636C9"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.8 4.9L18.7 9.7l-4.9 1.8L12 16.4l-1.8-4.9L5.3 9.7l4.9-1.8z"/><path d="M18.5 15l.8 2.2 2.2.8-2.2.8-.8 2.2-.8-2.2-2.2-.8 2.2-.8z"/></svg></span><span style="font-size:13px;line-height:18px;color:#0B1B33">Gemini read these from your photo. Check them before we fetch the bill.</span></div>
+    <div class="card" style="padding:4px 16px">
+      <div class="row" style="min-height:64px;gap:12px;border-bottom:1px solid #E3E9F1">
+        <div class="tile" style="width:40px;height:40px;flex-basis:40px;background:#FFF6D6;color:#845500"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2L3 14h9l-1 8 10-12h-9z"/></svg></div>
+        <div style="flex:1;display:flex;flex-direction:column;gap:2px"><span class="t13 muted">Provider</span><span class="t15">DHBVN Haryana · Electricity</span></div>
+      </div>
+      <div class="row" style="min-height:60px;justify-content:space-between;border-bottom:1px solid #E3E9F1"><div style="display:flex;flex-direction:column;gap:2px"><span class="t13 muted">Account number</span><span class="t15" style="letter-spacing:.04em">7319 2046 58</span></div><span class="pill" style="background:#E7F6EE;color:#0A7A43">Clear</span></div>
+      <div class="row" style="min-height:60px;justify-content:space-between;border-bottom:1px solid #E3E9F1"><div style="display:flex;flex-direction:column;gap:2px"><span class="t13 muted">Name on bill</span><span class="t15">Kirti Agarwal</span></div><span class="pill" style="background:#E7F6EE;color:#0A7A43">Clear</span></div>
+      <div class="row" style="min-height:60px;justify-content:space-between"><div style="display:flex;flex-direction:column;gap:2px"><span class="t13 muted">Amount on the paper bill</span><span class="t15">₹2,140 · Nov 2026</span></div><span class="pill" style="background:#F1F4F8;color:#33445C">Will refresh</span></div>
+    </div>
+    <div class="row" style="align-items:flex-start;gap:12px;padding:0 4px">
+      <span style="color:#0A7A43;margin-top:1px"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg></span>
+      <span class="t13 muted">We fetch the latest amount from DHBVN through Bharat Connect, so you never pay an old figure. The photo is deleted once the details are read.</span>
+    </div>
+    <button onClick="{{ addManual }}" style="align-self:flex-start;border:0;background:transparent;font:600 14px/20px Inter,sans-serif;color:#002E6E;padding:4px;cursor:pointer">Something wrong? Enter it yourself</button>
+  </div>
+  <div class="foot"><button class="btn pri" disabled="{{ fetching }}" onClick="{{ useScan }}"><sc-if value="{{ fetching }}" hint-placeholder-val="{{ false }}"><span class="spin" style="border-color:rgba(255,255,255,.35);border-top-color:#fff"></span>Fetching your bill</sc-if><sc-if value="{{ notFetching }}" hint-placeholder-val="{{ true }}">Fetch latest bill</sc-if></button></div>
+</div>
+</sc-if>
+
+<sc-if value="{{ showFab }}" hint-placeholder-val="{{ false }}">
+  <button class="fab" onClick="{{ openAddSheet }}" aria-label="Add a bill"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>Add bill</button>
+</sc-if></div>
 
 <sc-if value="{{ showNav }}" hint-placeholder-val="{{ false }}">
   <nav class="nav" aria-label="Bills Hub">
@@ -860,6 +926,25 @@ body{background:#0B1B33;font-family:Inter,system-ui,sans-serif;overflow:hidden}
 <sc-if value="{{ hasToast }}" hint-placeholder-val="{{ false }}">
   <div role="status" style="position:absolute;left:20px;right:20px;bottom:{{ toastBottom }};background:#0B1B33;color:#fff;border-radius:12px;padding:13px 16px;font-size:14px;line-height:20px;font-weight:500;z-index:6;animation:up .25s ease-out;box-shadow:0 8px 24px rgba(11,27,51,.25)">{{ toast }}</div>
 </sc-if>
+<sc-if value="{{ addSheetOpen }}" hint-placeholder-val="{{ false }}">
+  <div style="position:absolute;inset:0;background:rgba(11,27,51,.5);display:flex;flex-direction:column;justify-content:flex-end;z-index:5">
+    <button aria-label="Close" onClick="{{ closeAddSheet }}" style="flex:1 1 auto;border:0;background:transparent;cursor:pointer"></button>
+    <div style="background:#fff;border-radius:24px 24px 0 0;padding:10px 20px 28px;display:flex;flex-direction:column;gap:16px;animation:up .3s ease-out">
+      <span style="width:40px;height:4px;border-radius:2px;background:#D5DEE9;align-self:center"></span>
+      <div><div style="font-size:22px;line-height:28px;font-weight:700">Add a bill</div><div class="t13 muted" style="margin-top:4px">Electricity, water, broadband, gas, DTH, LPG and more</div></div>
+      <button class="card" onClick="{{ addScan }}" style="padding:16px;display:flex;gap:14px;align-items:center;text-align:left;border-color:#B9E6F8;background:#F2FBFE">
+        <div class="tile" style="background:#00BAF2;color:#fff"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h3l2-3h6l2 3h3a1.5 1.5 0 0 1 1.5 1.5v9A1.5 1.5 0 0 1 20 20H4a1.5 1.5 0 0 1-1.5-1.5v-9A1.5 1.5 0 0 1 4 8z"/><circle cx="12" cy="13.5" r="3.8"/></svg></div>
+        <div style="flex:1;display:flex;flex-direction:column;gap:2px"><span class="row" style="gap:8px"><span class="t15">Scan a bill photo</span><span class="pill" style="background:#EEEAFE;color:#432AA8">AI</span></span><span class="t13 muted">Gemini reads the provider and ID for you</span></div>
+        <span class="muted"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg></span>
+      </button>
+      <button class="card" onClick="{{ addManual }}" style="padding:16px;display:flex;gap:14px;align-items:center;text-align:left">
+        <div class="tile" style="background:#EEF2F7;color:#002E6E"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20h4L19 9l-4-4L4 16z"/><path d="M13.5 6.5l4 4"/></svg></div>
+        <div style="flex:1;display:flex;flex-direction:column;gap:2px"><span class="t15">Enter details manually</span><span class="t13 muted">Pick the category, provider and customer ID</span></div>
+        <span class="muted"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg></span>
+      </button>
+    </div>
+  </div>
+</sc-if>
 </div>
 </template>
 <script>
@@ -916,7 +1001,7 @@ var ADD = {
     boards: ['Indane Gas', 'HP Gas', 'Bharat Gas'],
     amt: 853, due: 20, hist: [0, 853, 0, 853, 0, 853] },
   elec: { idName: 'consumer number', short: 'Consumer No.', sub: 'Consumer number', where: 'Printed near the top of your bill as Consumer No. or CA No. It is usually 9 to 12 digits.', minLen: 8, maxLen: 12, isBill: true, label: 'Bill due', cycle: 30,
-    boards: ['CESC Kolkata', 'WBSEDCL West Bengal', 'BSES Rajdhani', 'BSES Yamuna', 'Tata Power-DDL', 'MSEDCL Maharashtra', 'BESCOM Bengaluru', 'UPPCL Urban', 'TNPDCL Tamil Nadu'],
+    boards: ['CESC Kolkata', 'DHBVN Haryana', 'WBSEDCL West Bengal', 'BSES Rajdhani', 'BSES Yamuna', 'Tata Power-DDL', 'MSEDCL Maharashtra', 'BESCOM Bengaluru', 'UPPCL Urban', 'TNPDCL Tamil Nadu'],
     amt: 2140, due: 6, hist: [1520, 1980, 2060, 1750, 1810, 2140] },
   water: { idName: 'K number', short: 'K No.', sub: 'K number or consumer ID', where: 'Shown on your water bill as K No. or Consumer ID.', minLen: 8, maxLen: 12, isBill: true, label: 'Bill due', cycle: 30,
     boards: ['Delhi Jal Board', 'BWSSB Bengaluru', 'MCGM Mumbai Water', 'HMWSSB Hyderabad', 'Kolkata Municipal Corporation'],
@@ -966,7 +1051,7 @@ function seed(start) {
     autopay: {}, paid: {}, cats: { mobile: true }, cashback: 0,
     split: {}, splitOn: false, sheet: false, payAll: false, bundleOff: {}, method: 'hdfc', processing: false,
     last: null, calSel: 3, apCap: 2500, apAlert: true, apOn: false, apSel: {}, toast: '',
-    manual: [], mCount: 0, addCat: 'elec', board: 'CESC Kolkata', boardQ: '', consumerNo: '', billOwner: 'me', fetching: false, draft: null,
+    manual: [], mCount: 0, addCat: 'elec', board: 'CESC Kolkata', boardQ: '', consumerNo: '', billOwner: 'me', fetching: false, draft: null, addSheet: false, scanReading: false,
     insSel: 5, trendSel: 5
   };
   var me = { consent: true, myPhone: '9876543210', myOtp: '4821' };
@@ -984,6 +1069,10 @@ function seed(start) {
     case 'consumer': w(fam); w({ screen: 'consumer', addCat: 'elec', board: 'CESC Kolkata', consumerNo: '1023456789', billOwner: 'fam', hist: ['hub', 'addBill', 'board'] }); break;
     case 'billFound': w(fam); w({ screen: 'billFound', draft: { cat: 'elec', board: 'CESC Kolkata', owner: 'fam', num: '102345678912' }, hist: ['hub', 'addBill', 'board', 'consumer'] }); break;
     case 'hub': w(famE); w({ screen: 'hub' }); break;
+    case 'addSheet': w(famE); w({ screen: 'hub', addSheet: true }); break;
+    case 'scanBill': w(famE); w({ screen: 'scanBill', hist: ['hub'] }); break;
+    case 'scanReading': w(famE); w({ screen: 'scanBill', scanReading: true, hist: ['hub'] }); break;
+    case 'scanResult': w(famE); w({ screen: 'scanResult', hist: ['hub', 'scanBill'] }); break;
     case 'insights': w(famE); w({ screen: 'insights', hist: ['hub'] }); break;
     case 'bill': w(famE); w({ screen: 'bill', billId: 'x1', hist: ['hub'] }); break;
     case 'pay': w(famE); w({ screen: 'hub', sheet: true, payAll: true }); break;
@@ -1031,7 +1120,7 @@ class Component extends DCLogic {
   back() {
     this.setState(function (s) {
       var h = s.hist.slice(); var p = h.pop() || 'hub';
-      return { screen: p, hist: h, sheet: false, processing: false, fetching: false };
+      return { screen: p, hist: h, sheet: false, processing: false, fetching: false, scanReading: false, addSheet: false };
     });
   }
 
@@ -1358,7 +1447,7 @@ class Component extends DCLogic {
     };
 
     var s = {};
-    ['start', 'meOtp', 'scanning', 'found', 'addFamily', 'familyOtp', 'familyFound', 'hub', 'insights', 'bill', 'split', 'success', 'calendar', 'rewards', 'family', 'autopay', 'addBill', 'board', 'consumer', 'billFound']
+    ['start', 'meOtp', 'scanning', 'found', 'addFamily', 'familyOtp', 'familyFound', 'hub', 'insights', 'bill', 'split', 'success', 'calendar', 'rewards', 'family', 'autopay', 'addBill', 'board', 'consumer', 'billFound', 'scanBill', 'scanResult']
       .forEach(function (k) { s[k] = st.screen === k; });
     var navScreens = { hub: 1, calendar: 1, rewards: 1, family: 1 };
     var showNav = !!navScreens[st.screen];
@@ -1498,6 +1587,28 @@ class Component extends DCLogic {
       },
 
       toAddBill: function () { self.go('addBill'); },
+      showFab: st.screen === 'hub' && !st.sheet && !st.addSheet,
+      addSheetOpen: !!st.addSheet,
+      openAddSheet: function () { set({ addSheet: true }); },
+      closeAddSheet: function () { set({ addSheet: false }); },
+      addManual: function () { set({ addSheet: false }); self.go('addBill'); },
+      addScan: function () { set({ addSheet: false, scanReading: false }); self.go('scanBill'); },
+      scanReading: !!st.scanReading,
+      scanHint: st.scanReading ? 'Hold still for a second' : 'Fit the whole bill inside the frame',
+      scanBox: st.scanReading ? '2px' : '0px', scanBoxBg: st.scanReading ? 'rgba(0,186,242,.10)' : 'transparent',
+      capture: function () {
+        if (st.scanReading) return;
+        set({ scanReading: true });
+        clearTimeout(self._scanT);
+        self._scanT = setTimeout(function () { set({ scanReading: false }); self.go('scanResult'); }, 1800);
+      },
+      useScan: function () {
+        set({ fetching: true });
+        clearTimeout(self._fetchT);
+        self._fetchT = setTimeout(function () {
+          self.go('billFound', { fetching: false, draft: { cat: 'elec', board: 'DHBVN Haryana', owner: 'me', num: '7319204658' } });
+        }, 1200);
+      },
       addCats: addCats, addCatsA: addCatsA,
       addCatLabel: CAT[st.addCat].label,
       boardQ: st.boardQ, onBoardQ: function (e) { set({ boardQ: String(e.target.value).slice(0, 40) }); },
